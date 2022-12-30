@@ -1,0 +1,45 @@
+// app global css in SCSS form
+
+.text-primary-dark {
+  color: $primary-dark !important;
+}
+.bg-primary-dark {
+  background: $primary-dark !important;
+}
+
+.text-default-link {
+  color: $default-link !important;
+}
+.bg-default-link {
+  background: $default-link !important;
+}
+
+.bg-title-gray {
+  background: $title-gray !important;
+}
+
+.bg-active-dark-gray {
+  background: $active-dark-gray !important;
+}
+
+.even-col{
+  flex: 3 1 0;
+}
+
+.q-field--disabled .q-field__inner{
+  cursor: default!important;
+}
+
+.text-h6{
+  margin:0;
+}
+
+body{
+  font-weight: 300;
+  font-size: 13px;
+}
+
+
+.navbar--menuDark{
+  color: $navbar-bg-dark!important;
+}

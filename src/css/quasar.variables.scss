@@ -1,0 +1,79 @@
+// Quasar SCSS (& Sass) Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
+
+// Check documentation for full list of Quasar variables
+
+// Your own variables (that are declared here) and Quasar's own
+// ones will be available out of the box in your .vue/.scss/.sass files
+
+// It's highly recommended to change the default colors
+// to match your app's branding.
+// Tip: Use the "Theme Builder" on Quasar's documentation website.
+
+
+//Theme Light
+$primary   : #17597C;
+$secondary : #26A69A;
+$accent    : #9C27B0;
+$positive  : #21BA45;
+$negative  : #C10015;
+$info      : #31CCEC;
+$warning   : #F2C037;
+$title-gray: #8a8a8a;
+$active-dark-gray: #707070;
+
+//Theme Dark
+$dark      : #1D1D1D;
+$dark-page : #081221;
+$magic-select-bg: #8bb9d3;
+$magic-select-text: #03527c;
+$sidebar-background: rgba(0,0,0,.86);
+
+//Cards
+$card-bg: #ffffff;
+$card-title: black;
+$card-subtitle: $primary;
+$card-divider: white;
+
+//Tables
+$table-bg : #f9f9f9;
+$table-header-bg : #f1fbfa;
+
+//Dark theme
+
+//General
+$dark      : #1d2731;
+$dark-page : #0D1117;
+$primary-dark: #758ab3;
+$secondarydark: #323642;
+
+//Cards
+$card-bg-dark: #282e3a;
+$card-title-dark: #253f52;
+$card-subtitle-dark: $primary-dark;
+$card-divider-dark: $dark-page;
+
+
+//NavBar
+$navbar-bg: #5abdd1;
+$navbar-bg-dark: $dark;
+
+//Tables
+$table-bg-dark : #213141;
+$table-header-bg-dark : #1f2a39;
+
+
+//ColumContainer
+$colum-title : #1b4662;
+$colum-title-dark : #465262;
+
+//BarEdit
+$colum-edit : #8a8a8a;
+$colum-edit-dark : #2f363a;
+
+
+
+$default-link   : #0000EE;
+
