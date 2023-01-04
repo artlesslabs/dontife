@@ -1,24 +1,20 @@
 import { Notify } from 'quasar';
-import leadRepository from "@/repositories/leadRepository.js";
-import personRepository from '@/repositories/personRepository.js';
-import userRepository from '@/repositories/userRepository.js';
-import profileRepository from '@/repositories/profileRepository.js';
-import leadUpdatesRepository from "@/repositories/leadUpdatesRepository.js";
+import repositoryFactory from "@/repositories/repositoryFactory.js";
 import { i18n } from 'boot/i18n.js';
 let { t } = i18n.global;
 
 class ApiConnector {
   repository;
   #availableRepositories = {
-    leads: leadRepository,
-    people: personRepository,
-    users: userRepository,
-    profiles: profileRepository,
-    leadUpdates: leadUpdatesRepository,
+    leads: '/leads',
+    people: '/people',
+    users: '/users',
+    profiles: '/profiles',
+    leadUpdates: '/lead-updates',
   };
 
   constructor( repositoryName ) {
-    this.repository = this.#availableRepositories[repositoryName];
+    this.repository = repositoryFactory( this.#availableRepositories[repositoryName] );
   }
 
   async find( params ){
@@ -58,7 +54,6 @@ class ApiConnector {
     errorMessage,
   } ){
     try {
-      console.log( data );
       let response = await this.repository.update( data );
       Notify.create( {
         type: 'positive',

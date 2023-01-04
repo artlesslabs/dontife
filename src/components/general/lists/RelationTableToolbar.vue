@@ -260,7 +260,6 @@ function exportData(){
   } else {
     dataToExport = JSON.parse( JSON.stringify( props.displayedData ) );
   }
-  console.log( props.selectedData );
   if ( props.exportColumns ) {
     dataToExport = dataToExport.map( ( el ) => generateTableData( el ) );
   }

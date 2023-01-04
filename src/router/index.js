@@ -25,7 +25,6 @@ router.beforeEach( ( to, from, next )=>{
       } );
     } else {
 
-      console.log( to.name );
       let isAllowed = permissionStore.isAllowed( 'view', to.name );
       if ( !isAllowed ) {
         next( { name: 'notAllowed' } );

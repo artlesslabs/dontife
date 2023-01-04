@@ -64,7 +64,6 @@
 import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue';
 import ActionConfirmation from 'components/general/ActionConfirmation.vue';
-import { useUserStore } from 'stores/userStore.js';
 import DefaultEdit from "components/general/forms/DefaultEdit.vue";
 import EditableText from "components/general/inputs/editableItems/EditableText.vue";
 import EditablePassword from "components/general/inputs/editableItems/EditablePassword.vue";
@@ -73,19 +72,20 @@ import { useI18n } from "vue-i18n";
 import ColumnContainer from "components/general/containers/columnContainer/ColumnContainer.vue";
 import ColumnSection from "components/general/containers/columnContainer/ColumnSection.vue";
 import EditableSelect from "components/general/inputs/editableItems/EditableSelect.vue";
+import { ApiConnector } from "@/apiConnector.js";
 
 const { t }= useI18n( { useScope: 'global' } );
 
 
 const router = useRouter();
-const userStore = useUserStore();
+const userConnector = new ApiConnector( 'users' );
 let editMode = ref( false );
 let confirmDialog = ref( false );
 let loading = ref( false );
 
 //Delete Record
 async function deleteRecord(){
-  await userStore.delete( { id: id.value } );
+  await userConnector.delete( { id: id.value } );
   confirmDialog.value = false;
   router.push( { name: 'users.list' } );
 }
@@ -118,7 +118,7 @@ const findUserErrorActions = [
 
 async function findUser(){
   loading.value = true;
-  user.value = await userStore.findOne( { id: id.value, errorActions: findUserErrorActions } );
+  user.value = await userConnector.findOne( { id: id.value, errorActions: findUserErrorActions } );
   loading.value = false;
 }
 findUser();
@@ -152,13 +152,11 @@ const UpdateUserErrorActions = [
 ];
 
 async function update(){
-  console.log( user.value );
-  await userStore.update( {
+  await userConnector.update( {
     user: user.value,
     postUpdateHandler: ()=>{ editMode.value = false; findUser(); },
     actions: UpdateUserErrorActions,
   } );
-  console.log( user.value );
 }
 
 </script>

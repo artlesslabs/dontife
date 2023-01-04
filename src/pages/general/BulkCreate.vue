@@ -217,9 +217,7 @@ async function creationConfirmationCreateHandler() {
   for ( let el of selected.value ){
     payload.push( removeEmpty( el ) );
   }
-  console.log( payload );
   createdRecords.value = await apiConnector.value.bulkCreate( { data: payload } );
-  console.log( createdRecords.value );
   loading.value = false;
 }
 
@@ -348,7 +346,6 @@ async function processData(){
 function bulkCreateRecords(){
   // eslint-disable-next-line no-unused-vars
   let payload = selected.value.map( ( { errors, id, ...rest } )=>{ return { ...rest }; } );
-  console.log( payload );
   creationConfirmationDialog.value = true;
 }
 

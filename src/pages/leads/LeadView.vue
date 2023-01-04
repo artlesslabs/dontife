@@ -3,9 +3,9 @@
     v-model:editable="editMode"
     :loading="loading"
     :title="t( 'lead.view.title', { id: id } )"
+    :delete-function="deleteRecord"
     :cancel-edition="cancelEdition"
     :update-function="update"
-    :delete-function="deleteRecord"
   >
     <template #default="props">
       <div class="flex">

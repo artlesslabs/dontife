@@ -53,4 +53,11 @@ defineProps( {
   margin: 4px;
 }
 
+.submenu-drawer{
+  max-height: 100%;
+  background-color: #464646;
+  color:#ffffff;
+  position: relative;
+}
+
 </style>

@@ -152,7 +152,7 @@
         ref="table"
         v-model:pagination="paginationData"
         :title="title"
-        :filter=" user ? appliedFilters.searchString : appliedFilters"
+        :filter="appliedFilters"
         :rows="modelValue"
         :columns="cols"
         row-key="name"
@@ -199,7 +199,6 @@ let props = defineProps( {
   title: { type: String, default: '' },
   actions: { type: Array, default: ()=>[] },
   findFunction: { type: Function, default: ()=>[] },
-  user: { type: Boolean, default: false },
 } );
 
 let route = useRoute();
@@ -208,7 +207,7 @@ let exportSelected = ref( false );
 let table = ref( null );
 let filters = ref( {} );
 let appliedFilters = ref( {} );
-let paginationData = ref( props.user ? { rowsPerPage: 5, page: 1, } : { page: 1 } );
+let paginationData = ref( { page: 1 } );
 let filterableFields = computed( ()=> props.cols.filter( ( el )=>el.filterable ) );
 
 if ( route.query ) {
@@ -234,13 +233,11 @@ async function fetchRecords( { pagination, filter } = { pagination: { page: 1, r
         }
       } );
     emit( 'update:modelValue', response.data );
-    if ( !props.user ) {
-      paginationData.value.sortBy = pagination.sortBy;
-      paginationData.value.descending = pagination.descending;
-      paginationData.value.rowsPerPage = response.meta.pagination.pageSize;
-      paginationData.value.rowsNumber = response.meta.pagination.total;
-      paginationData.value.page = response.meta.pagination.page;
-    }
+    paginationData.value.sortBy = pagination.sortBy;
+    paginationData.value.descending = pagination.descending;
+    paginationData.value.rowsPerPage = response.meta.pagination.pageSize;
+    paginationData.value.rowsNumber = response.meta.pagination.total;
+    paginationData.value.page = response.meta.pagination.page;
   } catch ( e ){
     console.log( e );
   }
@@ -320,15 +317,3 @@ let emit = defineEmits( [ 'update:modelValue' ] );
 fetchRecords();
 
 </script>
-
-<style lang="scss">
-
-.default-list-container{
-  font-size: 14px;
-  max-height: 100%;
-  border-radius: 15px;
-  background-color: rgba(255,255,255,0.7);
-}
-
-</style>
-

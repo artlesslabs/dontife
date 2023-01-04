@@ -361,7 +361,7 @@ async function create(){
 
 // eslint-disable-next-line no-unused-vars
 async function update(){
-  console.log( profile.value );
+
 }
 
 //Get Profiles

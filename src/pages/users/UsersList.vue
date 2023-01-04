@@ -3,7 +3,7 @@
     ref="usersList"
     v-model:selected="selected"
     v-model="users"
-    :find-function="userStore.find.bind( userStore )"
+    :find-function="userConnector.find.bind( userConnector )"
     :actions="actions"
     user
     selection="multiple"
@@ -23,14 +23,12 @@ import DefaultList from 'components/general/lists/DefaultList.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import ActionConfirmation from 'components/general/ActionConfirmation.vue';
-import { useUserStore } from 'stores/userStore.js';
 import { useI18n } from "vue-i18n";
+import { ApiConnector } from "@/apiConnector.js";
 
 const { t }= useI18n( { useScope: 'global' } );
-
 let confirmDialog = ref( false );
-
-const userStore = useUserStore();
+const userConnector = new ApiConnector( 'users' );
 let selected = ref( [] );
 let actions = [
   { name: t( 'generalComponents.action.delete' ), type: 'delete', handler: ()=>{ confirmDialog.value = !confirmDialog.value; } },
@@ -41,7 +39,7 @@ let usersList = ref( null );
 async function deleteSelected(){
   let ids = selected.value.map( ( el )=>el.id );
   for ( const id of ids ){
-    await userStore.delete( { id } );
+    await userConnector.delete( { id } );
   }
   await usersList.value.fetchRecords();
   confirmDialog.value = false;

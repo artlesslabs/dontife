@@ -43,7 +43,6 @@ export const usePermissionStore = defineStore( 'permission', {
     },
     isAllowed( name, scope = null ){
       if ( scope ){
-        console.log( _.get( this.permissions, `${scope}`, [] ) );
         let scopedPermissions =_.get( this.permissions, `${scope}`, [] );
         return scopedPermissions.includes( name );
       } else {

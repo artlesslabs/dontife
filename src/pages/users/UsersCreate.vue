@@ -63,14 +63,14 @@ import DefaultCreate from 'components/general/forms/DefaultCreate.vue';
 import PasswordInput from 'components/general/inputs/PasswordInput.vue';
 import DefaultToggle from 'components/general/inputs/DefaultToggle.vue';
 import DefaultSelect from 'components/general/inputs/DefaultSelect.vue';
-import { useUserStore } from 'stores/userStore.js';
 import { useI18n } from "vue-i18n";
 import CreateSection from "components/general/forms/create/CreateSection.vue";
 import MagicSelect from "components/general/inputs/MagicSelect.vue";
+import { ApiConnector } from "@/apiConnector.js";
 
 const { t } = useI18n( { useScope: 'global' } );
 
-const userStore = useUserStore();
+const userConnector = new ApiConnector( 'users' );
 let user = ref( { confirmed: false, blocked: false } );
 
 const personFilters = [ {
@@ -92,7 +92,7 @@ const router = useRouter();
 
 function create() {
   let payload = { ...user.value, person: user.value.person.id };
-  userStore.create( { user: payload, postCreateHandler: () => router.push( { name: 'users.list' } ) } );
+  userConnector.create( { data: payload, postCreateHandler: () => router.push( { name: 'users.list' } ) } );
 }
 
 </script>

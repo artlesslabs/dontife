@@ -27,7 +27,7 @@ const routes = [
         name: 'home',
         meta: {
           menu: true,
-          icon: 'mdi-home',
+          icon: 'fa-solid fa-chart-line',
           title: 'Home',
         },
         children: [
@@ -77,7 +77,7 @@ const routes = [
         name: 'people',
         meta: {
           menu: true,
-          icon: 'mdi-account-group',
+          icon: 'fa-solid fa-users',
           title: t( 'people.menuTitle' ),
         },
         children: [
@@ -119,7 +119,7 @@ const routes = [
         redirect: 'users',
         meta: {
           menu: true,
-          icon: 'mdi-security',
+          icon: 'fa-solid fa-fingerprint',
           title: 'Access Control',
         },
         children: [
@@ -128,7 +128,7 @@ const routes = [
             name: 'users',
             meta: {
               submenu: true,
-              icon: 'mdi-account-edit',
+              icon: 'fa-solid fa-user-pen',
               title: t( 'user.menuTitle' ),
             },
             children: [
@@ -167,7 +167,7 @@ const routes = [
             path: 'profiles',
             name: 'profiles',
             meta: {
-              icon: 'mdi-card-account-details',
+              icon: 'fa-regular fa-id-card',
               title: 'Profiles',
               submenu: true,
             },

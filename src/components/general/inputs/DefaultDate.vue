@@ -128,7 +128,6 @@ let formattedModelDate = computed( {
     }
   },
   async set( newVal ) {
-    console.log( 'emit dd', date.formatDate( newVal, 'YYYY-MM-DD' ) );
     if ( props.multiple ){
       await emit( 'update:modelValue', newVal.map( ( el )=>date.formatDate( el, 'YYYY-MM-DD' ) ) );
     } else {

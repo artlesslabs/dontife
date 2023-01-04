@@ -195,7 +195,6 @@ function validate(){
   if ( props.rules ){
     for ( const rule of props.rules ){
       let result = rule( props.modelValue );
-      console.log( rule( props.modelValue ) );
       if ( result !== true ){
         hasErrorValue.value = true;
         errorString.value = result;

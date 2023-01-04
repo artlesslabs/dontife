@@ -6,10 +6,15 @@
   >
     <q-avatar
       class="side-menu-list-avatar"
+      square
       size="sm"
       font-size="24px"
     >
-      <q-icon :name="icon" />
+      <q-icon
+        class="item-icon"
+        size="20px"
+        :name="icon"
+      />
     </q-avatar>
     <q-item-section class="q-pl-md title-section">
       {{ title }}
@@ -32,22 +37,27 @@ defineProps( {
 <style scoped lang="scss">
 .menu-item-active{
   .side-menu-list-avatar{
-    color: orange;
+    color: #FECF61;
   }
   .title-section{
-    background-color: orange;
     border-radius: 24px;
   }
 }
 
 .submenu-drawer{
+  padding-left: 24px;
   max-height: 100%;
-  background-color: (255, 255, 255, 0.9);
+  background-color: rgba(255,255,255,0.3);
   position: relative;
 }
 
 .side-menu-list-avatar{
   margin: 4px;
+}
+
+.item-icon {
+  overflow: visible;
+  filter: drop-shadow(0px 2px 3px rgb(0 0 0 / 0.5));
 }
 
 </style>

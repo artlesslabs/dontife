@@ -6,7 +6,7 @@
     persistent
     show-if-above
     mini-width="130"
-    :mini="miniState && !settingsShown"
+    :mini="miniState && !settingsShown && !notificationShown"
     side="left"
     @mouseover="miniState = false"
     @mouseout="miniState = true"
@@ -82,8 +82,85 @@
               text-color="white"
               floating
             >
-              10+
+              {{ readNotificationsCount }}
             </q-badge>
+            <q-menu
+              v-model="notificationShown"
+              transition-show="flip-right"
+              transition-hide="flip-left"
+              anchor="bottom right"
+              class="overflow-hidden"
+            >
+              <q-list
+                style="max-height: 260px; max-width: 250px; overflow-y:scroll"
+              >
+                <div
+                  v-for="notification of notifications"
+                  :key="notification"
+                  :class="`${notification.read ? '' : ( notification.type === 'info' ? 'info-background' : notification.type === 'warning' ? 'warning-background' : 'error-background' )}`"
+                >
+                  <q-item
+                    v-ripple
+                    clickable
+                  >
+                    <q-item-section
+                      top
+                      avatar
+                    >
+                      <q-avatar
+                        v-if="notification.type === 'info'"
+                        color="primary"
+                        text-color="white"
+                        icon="mdi-information"
+                      />
+                      <q-avatar
+                        v-if="notification.type === 'warning'"
+                        class="prueba1"
+                        color="warning"
+                        text-color="white"
+                        icon="mdi-alert"
+                      />
+                      <q-avatar
+                        v-if="notification.type === 'error'"
+                        color="negative"
+                        text-color="white"
+                        icon="mdi-close-circle"
+                      />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>{{ notification.title }}</q-item-label>
+                      <q-item-label
+                        caption
+                        lines="2"
+                      >
+                        {{ notification.message }}
+                      </q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </div>
+                <q-separator />
+              </q-list>
+              <div class="row justify-center">
+                <DefaultButton
+                  round
+                  flat
+                  color="primary"
+                  class="text-center"
+                  icon="mdi-arrow-down-bold"
+                  @click="viewNotification"
+                >
+                  <q-badge
+                    floating
+                    color="red"
+                    rounded
+                  >
+                    {{ readNotificationsCount }}
+                  </q-badge>
+                  <DefaultTooltip>View more</DefaultTooltip>
+                </DefaultButton>
+              </div>
+            </q-menu>
           </q-item-section>
         </q-item>
       </q-list>
@@ -117,29 +194,17 @@
                   v-model="settingsShown"
                   :offset="[ 20, 5 ]"
                 >
-                  <q-list
-                    separator
-                    style="min-width: 100px"
+                  <DefaultButton
+                    padding="none"
+                    margin="none"
+                    class="lang-btn"
+                    flat
+                    color="negative"
+                    dense
+                    @click="userStore.logout()"
                   >
-                    <q-item
-                      v-close-popup
-                      clickable
-                      dense
-                      class="justify-center row items-center"
-                    >
-                      <DefaultButton
-                        padding="none"
-                        margin="none"
-                        class="lang-btn"
-                        flat
-                        rounded
-                        dense
-                        @click="userStore.logout()"
-                      >
-                        LogOut
-                      </DefaultButton>
-                    </q-item>
-                  </q-list>
+                    LogOut
+                  </DefaultButton>
                 </q-menu>
               </DefaultButton>
             </div>
@@ -151,13 +216,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import SidebarSubmenu from "components/sidebar/SidebarSubmenu.vue";
 import SidebarMenuItem from "components/sidebar/SidebarMenuItem.vue";
 import { usePermissionStore } from "stores/permissionStore.js";
 import { useUserStore } from 'stores/userStore.js';
 import DefaultButton from "components/general/DefaultButton.vue";
+import DefaultTooltip from "components/general/DefaultTooltip.vue";
 
 
 let userStore = useUserStore();
@@ -166,8 +232,20 @@ let route = useRoute();
 let expanded = ref( {} );
 let miniState= ref( true );
 let settingsShown = ref( false );
+let notificationShown = ref( false );
+let notifications = ref( [] );
+let readNotificationsCount = computed( ()=>notifications.value.filter( ( el )=>!el.read ).length );
 
+notifications.value = [
+  { type: 'warning', title: 'prueba', message: 'este es un mensaje de prueba donde se crearon nuevos clientes', read: false },
+  { type: 'info', title: 'prueba', message: 'este es un mensaje de prueba 2', read: false },
+  { type: 'error', title: 'prueba', message: 'este es un mensaje de prueba 3', read: false },
+  { type: 'warning', title: 'prueba', message: 'este es un mensaje de prueba 4', read: true },
+];
 
+function viewNotification(){
+  notifications.value.push( ...notifications.value );
+}
 
 defineProps( {
   modelValue: { type: Boolean, default: false }
@@ -191,6 +269,24 @@ defineEmits( [ 'update:modelValue' ] );
   margin-bottom: 85px;
 }
 
+.info-background{
+  background-color: rgba(23,89,124,0.5);
+}
+
+.warning-background{
+  background-color: rgba(242,192,55,0.5);
+}
+
+.error-background{
+  background-color: rgba(192,0,21,0.5);
+}
+
+.navigation-bar{
+  min-height: 80px;
+  width: auto;
+  background-color: rgb(64,60,60);
+}
+
 .logout-section{
   width: 100%;
   position: absolute;
@@ -210,8 +306,7 @@ defineEmits( [ 'update:modelValue' ] );
 .navbar-list-container{
   font-size: 14px;
   max-height: 100%;
-  background: #FFFFFF;
-  opacity: 0.7;
+  background: rgba(255,255,255,0.5);
   border-radius: 41px;
   position: relative;
 }

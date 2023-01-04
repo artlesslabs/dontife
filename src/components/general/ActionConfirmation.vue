@@ -1,5 +1,5 @@
 <template>
-  <q-dialog>
+  <q-dialog v-bind="$attrs">
     <q-card>
       <q-card-section>
         <span>{{ message }}</span>
@@ -24,6 +24,9 @@
 
 <script setup>
 import DefaultButton from 'components/general/DefaultButton.vue';
+import { useI18n } from "vue-i18n";
+
+const { t }= useI18n( { useScope: 'global' } );
 
 defineProps( {
   message: { type: String, default: 'Are you sure you want to delete selected records?' },

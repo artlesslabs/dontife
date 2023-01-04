@@ -225,7 +225,6 @@ let emptyFetch = ref( false );
 
 async function createElement(){
   let response = model.value ? await model.value.create( { data: toCreateElement.value } ): await props.createFunction( { data: toCreateElement.value } );
-  console.log( response );
   if( props.multiple ){
     emit( 'update:modelValue', [ ...props.modelValue, response ] );
   }
@@ -263,7 +262,6 @@ function removeFromModel(){
 }
 
 async function fetchData( params ){
-  console.log( selectedFilter.value );
   let filter = { filters: {} };
   if ( selectedFilter.value.type === 'date' ){
     let normalizedDate = params.replace( /\//g, '-' );
@@ -288,7 +286,6 @@ function validate(){
   if ( props.rules ){
     for ( const rule of props.rules ){
       let result = rule( props.modelValue );
-      console.log( rule( props.modelValue ) );
       if ( result !== true ){
         hasErrorValue.value = true;
         errorString.value = result;

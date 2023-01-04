@@ -38,6 +38,7 @@ let leadsList = ref( null );
 
 //Delete Records
 async function deleteSelected(){
+  console.log( selected.value );
   let ids = selected.value.map( ( el )=>el.id );
   for ( const id of ids ){
     await leadConnector.delete( { id } );

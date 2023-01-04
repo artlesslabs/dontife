@@ -24,9 +24,7 @@ if ( userStore.user.userConfig?.isDark && !q.dark.isActive ){
 
 
 async function toggleDark(){
-  console.log( q.dark.isActive );
   q.dark.toggle();
-  console.log( q.dark.isActive );
   await userStore.update( { user: { id: userStore.user.id, userConfig: { ...userStore.user.userConfig, isDark: q.dark.isActive } } } );
   await userStore.getMe();
 }
