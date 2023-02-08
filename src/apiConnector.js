@@ -1,6 +1,7 @@
 import { Notify } from 'quasar';
 import repositoryFactory from "@/repositories/repositoryFactory.js";
 import { i18n } from 'boot/i18n.js';
+import notifications from "@/repositories/customPaths/notifications.js";
 let { t } = i18n.global;
 
 class ApiConnector {
@@ -11,10 +12,25 @@ class ApiConnector {
     users: '/users',
     profiles: '/profiles',
     leadUpdates: '/lead-updates',
+    taxDetails: '/tax-details',
+    roles: '/users-permissions/roles',
+    notifications: { path: '/strapi-notifications/notification', customPaths: notifications },
+    entityNotifications: '/strapi-notifications/entity-notifications',
   };
 
   constructor( repositoryName ) {
-    this.repository = repositoryFactory( this.#availableRepositories[repositoryName] );
+    let repositoryData = this.#availableRepositories[repositoryName];
+    let { path, customPaths } = repositoryData;
+    this.repository = repositoryFactory( path ?? repositoryData, customPaths ?? undefined );
+    for ( const fn of Object.keys( this.repository ) ) {
+      if ( !this[fn] ) {
+        Object.assign( this, {
+          async [fn]( ...params ) {
+            return await this.repository[fn]( ...params );
+          }
+        } );
+      }
+    }
   }
 
   async find( params ){
@@ -27,12 +43,13 @@ class ApiConnector {
 
   async findOne( {
    id,
+   query,
    errorActions= [ { label: t( 'findOne.errorActions.label' ), color: 'white', handler: ()=> { } } ],
    postFindHandler = ()=>{},
    errorMessage
  } ){
     try {
-      let response = await this.repository.findOne( id );
+      let response = await this.repository.findOne( id, query );
       postFindHandler( response );
       return response;
     } catch ( e ) {

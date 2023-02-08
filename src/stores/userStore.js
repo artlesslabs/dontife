@@ -3,23 +3,25 @@ import authRepository from 'src/repositories/authRepository.js';
 import { defaultApiError } from 'src/errorHandling.js';
 import { Notify } from 'quasar';
 import { usePermissionStore } from 'stores/permissionStore.js';
+import { ApiConnector } from "@/apiConnector.js";
 
-let permissionStore = usePermissionStore();
-
+const userConnector = new ApiConnector( 'users' );
 
 export const useUserStore = defineStore( 'user', {
   state: () => ( {
-    permissions: [],
     user: {},
   } ),
   actions: {
     async authenticate( identifier, password ) {
+      let permissionStore = usePermissionStore();
       let response;
       try {
         response = await authRepository.login( { identifier, password } );
         localStorage.setItem( 'token', response.jwt );
+        let { permissions, ...user } = await userConnector.findOne( { id: response.user.id, query: { populate: [ 'role', 'profiles', 'person' ] } } );
+        this.user=user;
         this.router.getRoutes();
-        permissionStore.setPermissions( response.user.permissions );
+        permissionStore.setPermissions( permissions );
         this.router.push( '/' );
       } catch ( e ) {
         console.log( e );
@@ -40,16 +42,12 @@ export const useUserStore = defineStore( 'user', {
     },
     async logout(){
       localStorage.removeItem( 'token' );
-      this.router.go();
+      console.log( 'p' );
+      this.router.push( { name: 'auth.login' } );
     },
   },
   persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: 'user',
-        storage: localStorage,
-      },
-    ],
+    key: 'user',
+    storage: localStorage,
   }
 } );

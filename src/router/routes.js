@@ -178,11 +178,25 @@ const routes = [
                 component: () => import( 'pages/profiles/ProfileList.vue' ),
               },
             ]
-          }
+          },
         ]
       },
-
-
+      {
+        path: 'usersProfile',
+        name: 'usersProfile',
+        meta: {
+          menu: true,
+          icon: 'fa-solid fa-chart-line',
+          title: 'User Profile',
+        },
+        children: [
+          {
+            path: '',
+            name: 'usersProfile.view',
+            component: () => import( 'pages/usersProfile/UsersProfile.vue' ),
+          },
+        ]
+      },
     ]
   },
   {

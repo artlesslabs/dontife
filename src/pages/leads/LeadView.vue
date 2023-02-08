@@ -38,6 +38,16 @@
               :label="t( 'lead.view.lastName' )"
             />
             <EditableText
+              v-model="lead.data.email"
+              v-bind="props"
+              :label="t( 'lead.view.contactEmail' )"
+            />
+            <EditableText
+              v-model="lead.data.phone"
+              v-bind="props"
+              :label="t( 'lead.view.contactPhone' )"
+            />
+            <EditableText
               v-model="lead.data.streetAddress"
               v-bind="props"
               :label="t( 'lead.view.streetAddress' )"

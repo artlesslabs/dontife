@@ -16,6 +16,7 @@
       :outlined="outlined"
       class="default-input"
       :rules="[ required ? rRequired:'', ...rules ]"
+      rounded
     >
       <template
         v-for="( _, slot ) in $slots"

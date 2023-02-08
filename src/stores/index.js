@@ -2,7 +2,7 @@ import { store } from 'quasar/wrappers';
 import { createPinia } from 'pinia';
 import { markRaw } from 'vue';
 import router from 'src/router/index.js';
-import piniaPersist from 'pinia-plugin-persist';
+import piniaPersist from 'pinia-plugin-persistedstate';
 
 /*
  * If not building with SSR mode, you can

@@ -7,7 +7,7 @@
       />
     </div>
     <div class="row justify-start">
-      <q-card class="card-container q-py-sm">
+      <q-card class="col-12 col-md-4 card-container q-py-sm">
         <q-item>
           <q-item-section avatar>
             <q-avatar square>
@@ -15,7 +15,9 @@
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <q-item-label><strong>Welcome </strong> </q-item-label>
+            <q-item-label class="text-title-container">
+              <strong>Welcome </strong>
+            </q-item-label>
             <q-item-label caption>
               Gerardo Landeros
             </q-item-label>
@@ -43,21 +45,24 @@
       </q-card>
     </div>
     <div class="row justify-start q-my-md">
-      <q-card class="col-4 card-container q-py-sm">
-        <q-item>
-          <q-item-section>
-            <q-item-label class="text-h6">
-              <strong>Deliveries</strong>
-            </q-item-label>
-          </q-item-section>
-          <q-item-section>
-            <q-btn
-              color="light-blue-8"
-              label="View"
-              class="q-px-sm"
-            />
-          </q-item-section>
-        </q-item>
+      <q-card class="col-12 col-md-4 card-container q-py-sm">
+        <div class="q-px-lg">
+          <q-item>
+            <q-item-section>
+              <q-item-label class="text-h6 title-card-container-deliveries q-px-sm">
+                <strong>Deliveries</strong>
+              </q-item-label>
+            </q-item-section>
+            <q-item-section>
+              <q-btn
+                size="lg"
+                color="light-blue-8 button-container"
+                label="View"
+                class="q-px-sm"
+              />
+            </q-item-section>
+          </q-item>
+        </div>
         <q-separator />
         <q-item>
           <q-item-section>
@@ -186,6 +191,46 @@
         </q-item>
       </q-card>
     </div>
+    <div class="row q-my-md">
+      <q-card class="col-12 col-md-4 card-container q-py-lg q-px-md">
+        <div class="q-px-lg">
+          <q-item>
+            <q-item-section>
+              <q-item-label class="text-h6 title-card-container-info q-px-sm">
+                <strong>Refund requestsd</strong>
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
+        <q-item>
+          <q-item-section avatar>
+            <q-btn
+              round
+              class="button-ref"
+            >
+              <q-icon
+                name="fa-solid fa-bag-shopping"
+                color="primary"
+              />
+            </q-btn>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-h6">
+              You have <strong>17 open refund requests</strong> to action. This includes 5 new requests.
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item class="items-center">
+          <q-item-section>
+            <q-btn
+              label="Review refund requests"
+              color="primary"
+              class="q-px-sm"
+            />
+          </q-item-section>
+        </q-item>
+      </q-card>
+    </div>
   </div>
 </template>
 
@@ -208,6 +253,55 @@
 .card-container{
   border-radius: 15px;
   background-color: rgba(255,255,255,0.7);
+}
+
+.card-container-info{
+  border-radius: 15px;
+  background-color: rgba(162, 160, 160, 0.4);
+  height: 100px;
+  padding-top: 5px;
+}
+
+.button-container{
+  border-radius: 15px!important;
+}
+
+.button-ref{
+  background-color: rgba(0, 193, 68, 0.54);
+}
+
+.text-title-container{
+  font-size: 25px;
+}
+
+</style>
+
+<style>
+
+.title-card-container-deliveries:before {
+  content: "";
+  background-color: #3251b9;
+  top: 30%;
+  left: 0;
+  width: 16px;
+  height: 24px;
+  position: absolute;
+  -webkit-tranform: translateY(-50%);
+  trasform: translateY(-50%);
+  border-radius: 4px;
+}
+
+.title-card-container-info:before {
+  content: "";
+  background-color: #cb8383;
+  top: 25%;
+  left: 0;
+  width: 16px;
+  height: 24px;
+  position: absolute;
+  -webkit-tranform: translateY(-50%);
+  trasform: translateY(-50%);
+  border-radius: 4px;
 }
 
 </style>

@@ -15,14 +15,14 @@ export const usePermissionStore = defineStore( 'permission', {
     },
     getMenu( permissions ){
       let menuItems = this.router.getRoutes().filter( ( el )=> el.meta.menu ).map( ( { meta, name, path, children } )=> {
-            return {
-              meta,
-              name,
-              path,
-              submenus: children.map( ( { meta, name, path } )=>{
-                  return { meta, name, path, };
-                } ).filter( ( el )=> el.meta?.submenu ) };
-        } );
+        return {
+          meta,
+          name,
+          path,
+          submenus: children.map( ( { meta, name, path } )=>{
+            return { meta, name, path, };
+          } ).filter( ( el )=> el.meta?.submenu ) };
+      } );
       // eslint-disable-next-line no-unused-vars
       let menuPermissions = [];
       for ( let item of menuItems ){
@@ -51,12 +51,7 @@ export const usePermissionStore = defineStore( 'permission', {
     }
   },
   persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: 'user',
-        storage: localStorage,
-      },
-    ],
+    key: 'permissions',
+    storage: localStorage,
   }
 } );

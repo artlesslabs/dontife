@@ -8,7 +8,7 @@
         <q-card-section>
           <span class="text-h4">{{ title }}</span>
           <div class="row justify-center">
-            <div class="full-width">
+            <div class="row">
               <slot />
             </div>
           </div>
@@ -86,10 +86,9 @@ async function createRecord(){
 <style scoped lang="scss">
 
 .default-create-container{
-  min-width: 500px;
-  max-width: 800px;
+  width: 100%;
   background-color: rgba(255,255,255,0.7);
-  border-radius: 15px;
+  border-radius: 25px;
 }
 .default-create-container-mobile{
   min-width: 0;

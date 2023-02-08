@@ -16,6 +16,7 @@
       emit-value
       outlined
       map-options
+      rounded
     >
       <template
         v-for="( _, slot ) in $slots"

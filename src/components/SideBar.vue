@@ -66,101 +66,8 @@
           class="row full-width side-menu-list"
           clickable
         >
-          <q-avatar
-            class="side-menu-list-avatar"
-            size="sm"
-            font-size="24px"
-          >
-            <q-icon name="mdi-bell-badge" />
-          </q-avatar>
-          <q-item-section class="q-pl-md title-section">
-            <p>
-              Notification
-            </p>
-            <q-badge
-              color="red"
-              text-color="white"
-              floating
-            >
-              {{ readNotificationsCount }}
-            </q-badge>
-            <q-menu
-              v-model="notificationShown"
-              transition-show="flip-right"
-              transition-hide="flip-left"
-              anchor="bottom right"
-              class="overflow-hidden"
-            >
-              <q-list
-                style="max-height: 260px; max-width: 250px; overflow-y:scroll"
-              >
-                <div
-                  v-for="notification of notifications"
-                  :key="notification"
-                  :class="`${notification.read ? '' : ( notification.type === 'info' ? 'info-background' : notification.type === 'warning' ? 'warning-background' : 'error-background' )}`"
-                >
-                  <q-item
-                    v-ripple
-                    clickable
-                  >
-                    <q-item-section
-                      top
-                      avatar
-                    >
-                      <q-avatar
-                        v-if="notification.type === 'info'"
-                        color="primary"
-                        text-color="white"
-                        icon="mdi-information"
-                      />
-                      <q-avatar
-                        v-if="notification.type === 'warning'"
-                        class="prueba1"
-                        color="warning"
-                        text-color="white"
-                        icon="mdi-alert"
-                      />
-                      <q-avatar
-                        v-if="notification.type === 'error'"
-                        color="negative"
-                        text-color="white"
-                        icon="mdi-close-circle"
-                      />
-                    </q-item-section>
-
-                    <q-item-section>
-                      <q-item-label>{{ notification.title }}</q-item-label>
-                      <q-item-label
-                        caption
-                        lines="2"
-                      >
-                        {{ notification.message }}
-                      </q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </div>
-                <q-separator />
-              </q-list>
-              <div class="row justify-center">
-                <DefaultButton
-                  round
-                  flat
-                  color="primary"
-                  class="text-center"
-                  icon="mdi-arrow-down-bold"
-                  @click="viewNotification"
-                >
-                  <q-badge
-                    floating
-                    color="red"
-                    rounded
-                  >
-                    {{ readNotificationsCount }}
-                  </q-badge>
-                  <DefaultTooltip>View more</DefaultTooltip>
-                </DefaultButton>
-              </div>
-            </q-menu>
+          <q-item-section class="row items-center full-width title-section">
+            <NotificationMenu v-model="notificationShown" />
           </q-item-section>
         </q-item>
       </q-list>
@@ -170,13 +77,21 @@
           class="row items-center full-width side-menu-list"
           clickable
         >
-          <q-avatar
-            class="side-menu-list-avatar"
-            size="lg"
-            font-size="44px"
+          <DefaultButton
+            color="primary"
+            size="sm"
+            round
+            padding="none"
+            margin="none"
+            flat
+            @click="( event )=> event.stopImmediatePropagation( goToUserProfile() )"
           >
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-          </q-avatar>
+            <q-avatar
+              class="side-menu-list-avatar"
+              size="lg"
+              font-size="44px"
+            />
+          </DefaultButton>
           <q-item-section class="logout-text q-pl-md">
             <div class="row items-center justify-between">
               <span class="text-capitalize col-10">Gerardo Landeros</span>
@@ -216,14 +131,14 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import SidebarSubmenu from "components/sidebar/SidebarSubmenu.vue";
 import SidebarMenuItem from "components/sidebar/SidebarMenuItem.vue";
 import { usePermissionStore } from "stores/permissionStore.js";
 import { useUserStore } from 'stores/userStore.js';
 import DefaultButton from "components/general/DefaultButton.vue";
-import DefaultTooltip from "components/general/DefaultTooltip.vue";
+import NotificationMenu from "components/notifications/NotificationMenu.vue";
 
 
 let userStore = useUserStore();
@@ -233,25 +148,18 @@ let expanded = ref( {} );
 let miniState= ref( true );
 let settingsShown = ref( false );
 let notificationShown = ref( false );
-let notifications = ref( [] );
-let readNotificationsCount = computed( ()=>notifications.value.filter( ( el )=>!el.read ).length );
-
-notifications.value = [
-  { type: 'warning', title: 'prueba', message: 'este es un mensaje de prueba donde se crearon nuevos clientes', read: false },
-  { type: 'info', title: 'prueba', message: 'este es un mensaje de prueba 2', read: false },
-  { type: 'error', title: 'prueba', message: 'este es un mensaje de prueba 3', read: false },
-  { type: 'warning', title: 'prueba', message: 'este es un mensaje de prueba 4', read: true },
-];
-
-function viewNotification(){
-  notifications.value.push( ...notifications.value );
-}
+const router = useRouter();
 
 defineProps( {
   modelValue: { type: Boolean, default: false }
 } );
 let navDrawer = ref( null );
 defineEmits( [ 'update:modelValue' ] );
+
+function goToUserProfile(){
+  console.log( 'prueba' );
+  router.push( { name: 'usersProfile.view', params: { id: userStore.user.id } } );
+}
 
 </script>
 
@@ -267,18 +175,6 @@ defineEmits( [ 'update:modelValue' ] );
   position: absolute;
   bottom: 0;
   margin-bottom: 85px;
-}
-
-.info-background{
-  background-color: rgba(23,89,124,0.5);
-}
-
-.warning-background{
-  background-color: rgba(242,192,55,0.5);
-}
-
-.error-background{
-  background-color: rgba(192,0,21,0.5);
 }
 
 .navigation-bar{

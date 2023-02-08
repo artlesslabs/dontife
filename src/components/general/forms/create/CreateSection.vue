@@ -12,7 +12,7 @@
         {{ text }}
       </p>
     </div>
-    <div :class="`${isDesktop?'col-auto':''} q-pt-md create-section-container`">
+    <div :class="`${isDesktop?'col-auto':''} row q-pt-md create-section-container`">
       <slot />
     </div>
   </div>

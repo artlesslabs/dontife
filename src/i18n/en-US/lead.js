@@ -20,7 +20,7 @@ export default {
     contactPhone: 'Contact Phone',
     legalName: 'Legal Name',
     streetAddress: 'Street Address',
-    settlement: 'settlement',
+    settlement: 'Settlement',
     city: 'City',
     state: 'State',
     zipcode: 'Zip Code',

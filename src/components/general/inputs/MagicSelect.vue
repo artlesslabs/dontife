@@ -8,6 +8,7 @@
         :model-value="modelValue"
         :rules="rules"
         outlined
+        rounded
         class="row field"
       >
         <div

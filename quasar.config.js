@@ -56,7 +56,7 @@ module.exports = configure( function( ctx ) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       env: {
-        API: ctx.dev ? 'http://localhost:1340' : 'https://bepm.artlesslabs.com',
+        API: ctx.dev ? 'http://192.168.0.11:1340' : 'https://bepm.artlesslabs.com',
       },
       target: {
         browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
