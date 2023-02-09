@@ -36,7 +36,7 @@ let props = defineProps( {
   row: { type: Boolean, default: true },
   label: { type: String, default: '' },
   editable: { type: Boolean, default: false },
-  modelValue: { type: String, default: 'No Value' },
+  modelValue: { type: String, default: '' },
   hideOnEdit: { type: Boolean, default: false }
 } );
 

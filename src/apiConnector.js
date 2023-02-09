@@ -16,6 +16,7 @@ class ApiConnector {
     roles: '/users-permissions/roles',
     notifications: { path: '/strapi-notifications/notification', customPaths: notifications },
     entityNotifications: '/strapi-notifications/entity-notifications',
+    userProfiles: '/user-profiles',
   };
 
   constructor( repositoryName ) {

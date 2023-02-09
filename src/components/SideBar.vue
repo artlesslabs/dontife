@@ -87,14 +87,15 @@
             @click="( event )=> event.stopImmediatePropagation( goToUserProfile() )"
           >
             <q-avatar
-              class="side-menu-list-avatar"
-              size="lg"
-              font-size="44px"
-            />
+              round
+              size="40px"
+            >
+              <img :src="`${contentURL}${userProfile.avatar?.url}`">
+            </q-avatar>
           </DefaultButton>
           <q-item-section class="logout-text q-pl-md">
             <div class="row items-center justify-between">
-              <span class="text-capitalize col-10">Gerardo Landeros</span>
+              <span class="text-capitalize col-10">{{ userStore.user?.person?.fullname }}</span>
               <DefaultButton
                 class="col-2"
                 color="primary"
@@ -139,10 +140,13 @@ import { usePermissionStore } from "stores/permissionStore.js";
 import { useUserStore } from 'stores/userStore.js';
 import DefaultButton from "components/general/DefaultButton.vue";
 import NotificationMenu from "components/notifications/NotificationMenu.vue";
+import { contentURL } from "@/constants.js";
+import { ApiConnector } from "@/apiConnector.js";
 
 
 let userStore = useUserStore();
 let permissionStore = usePermissionStore();
+const userProfileConnector = new ApiConnector( 'userProfiles' );
 let route = useRoute();
 let expanded = ref( {} );
 let miniState= ref( true );
@@ -155,11 +159,18 @@ defineProps( {
 } );
 let navDrawer = ref( null );
 defineEmits( [ 'update:modelValue' ] );
+let userProfile = ref( { files: {} } );
 
 function goToUserProfile(){
   console.log( 'prueba' );
   router.push( { name: 'usersProfile.view', params: { id: userStore.user.id } } );
 }
+
+async function findUserProfile(){
+  userProfile.value = ( await userProfileConnector.find( { filters: { usersPermissionsUser: userStore.user?.id } } ) ).data[0];
+  userProfile.value.files = {};
+}
+findUserProfile();
 
 </script>
 

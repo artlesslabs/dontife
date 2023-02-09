@@ -3,6 +3,7 @@
     :rules="rules"
     :label="label ?? t( 'generalComponents.passwordInput.label' )"
     :dense="dense"
+    placeholder="Password"
     :type=" hidePassword ? 'password':'text'"
   >
     <template #append>

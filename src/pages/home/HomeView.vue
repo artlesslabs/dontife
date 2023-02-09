@@ -10,8 +10,11 @@
       <q-card class="col-12 col-md-4 card-container q-py-sm">
         <q-item>
           <q-item-section avatar>
-            <q-avatar square>
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            <q-avatar
+              square
+              size="40px"
+            >
+              <img :src="`${contentURL}${userProfile.avatar?.url}`">
             </q-avatar>
           </q-item-section>
           <q-item-section>
@@ -19,7 +22,7 @@
               <strong>Welcome </strong>
             </q-item-label>
             <q-item-label caption>
-              Gerardo Landeros
+              {{ userStore.user?.person?.fullname }}
             </q-item-label>
           </q-item-section>
         </q-item>
@@ -235,6 +238,21 @@
 </template>
 
 <script setup>
+import { useUserStore } from "stores/userStore.js";
+import { contentURL } from "@/constants.js";
+import { ref } from "vue";
+import { ApiConnector } from "@/apiConnector.js";
+
+const userProfileConnector = new ApiConnector( 'userProfiles' );
+
+let userStore = useUserStore();
+let userProfile = ref( { files: {} } );
+
+async function findUserProfile(){
+  userProfile.value = ( await userProfileConnector.find( { filters: { usersPermissionsUser: userStore.user?.id } } ) ).data[0];
+  userProfile.value.files = {};
+}
+findUserProfile();
 
 </script>
 
