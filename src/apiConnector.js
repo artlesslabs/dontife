@@ -9,6 +9,9 @@ class ApiConnector {
   #availableRepositories = {
     leads: '/leads',
     people: '/people',
+    orders: '/orders',
+    patients: '/patients',
+    workOrders: '/work-orders',
     users: '/users',
     profiles: '/profiles',
     leadUpdates: '/lead-updates',

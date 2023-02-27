@@ -24,7 +24,6 @@ router.beforeEach( ( to, from, next )=>{
         params: { nextUrl: to.fullPath },
       } );
     } else {
-
       let isAllowed = permissionStore.isAllowed( 'view', to.name );
       if ( !isAllowed ) {
         next( { name: 'notAllowed' } );

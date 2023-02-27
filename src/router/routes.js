@@ -73,6 +73,48 @@ const routes = [
         ]
       },
       {
+        path: 'orders',
+        name: 'orders',
+        meta: {
+          menu: true,
+          icon: 'fa-solid fa-tooth',
+          title: t( 'orders.menuTitle' ),
+        },
+        children: [
+          {
+            path: '',
+            name: 'orders.list',
+            component: () => import( 'pages/orders/OrdersList.vue' ),
+          },
+          {
+            path: '',
+            name: 'orders.create',
+            component: () => import( 'pages/workOrder/OrdersCreate.vue' ),
+          },
+          {
+            path: '',
+            name: 'orders.create',
+            component: () => import( 'pages/workOrder/OrdersView.vue' ),
+          },
+        ]
+      },
+      {
+        path: 'new-order',
+        name: 'workOrders',
+        meta: {
+          menu: true,
+          icon: 'fa-solid fa-tooth',
+          title: t( 'orders.newOrder.menuTitle' ),
+        },
+        children: [
+          {
+            path: '',
+            name: 'workOrders.create',
+            component: () => import( 'pages/workOrder/WorkOrdersCreate.vue' ),
+          },
+        ]
+      },
+      {
         path: 'people',
         name: 'people',
         meta: {

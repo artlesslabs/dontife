@@ -1,5 +1,5 @@
 <template>
-  <div :class="`row ${isDesktop?'q-mx-lg q-mt-lg q-pa-md':'q-mx-sm q-mt-sm q-pa-xs'} justify-center card-container`">
+  <div :class="`row ${isDesktop?'q-mt-sm q-px-md':'q-mx-sm q-mt-sm q-pa-xs'} justify-center card-container`">
     <q-card
       class="q-pa-md shadow-2"
       :class="`create-form ${isDesktop ? 'q-pa-lg default-create-container' : 'q-pa-sm default-create-container-mobile'}`"
@@ -7,10 +7,8 @@
       <q-form @submit.prevent="createRecord()">
         <q-card-section>
           <span class="text-h4">{{ title }}</span>
-          <div class="row justify-center">
-            <div class="row">
-              <slot />
-            </div>
+          <div class="justify-center">
+            <slot />
           </div>
           <div class="row">
             <q-space />
@@ -88,7 +86,7 @@ async function createRecord(){
 .default-create-container{
   width: 100%;
   background-color: rgba(255,255,255,0.7);
-  border-radius: 25px;
+  border-radius: 41px;
 }
 .default-create-container-mobile{
   min-width: 0;

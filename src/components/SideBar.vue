@@ -5,7 +5,7 @@
     class="navigation-drawer"
     persistent
     show-if-above
-    mini-width="130"
+    :mini-width="130"
     :mini="miniState && !settingsShown && !notificationShown"
     side="left"
     @mouseover="miniState = false"

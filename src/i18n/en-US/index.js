@@ -5,6 +5,7 @@ import user from 'src/i18n/en-US/user.js';
 import navbar from 'src/i18n/en-US/navbar.js';
 import people from 'src/i18n/en-US/people.js';
 import lead from 'src/i18n/en-US/lead.js';
+import orders from 'src/i18n/en-US/orders.js';
 
 export default {
   authentication,
@@ -15,4 +16,5 @@ export default {
   navbar,
   people,
   lead,
+  orders
 };

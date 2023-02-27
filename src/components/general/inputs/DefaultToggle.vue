@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="q-px-md">
     <div>
       <label
         class="label"

@@ -124,7 +124,7 @@
               class="text-center"
               caption
             >
-              Biodentaq Avanzada
+              Biodental Avanzada
             </q-item-label>
             <q-item-label
               class="text-center"
@@ -200,7 +200,7 @@
           <q-item>
             <q-item-section>
               <q-item-label class="text-h6 title-card-container-info q-px-sm">
-                <strong>Refund requestsd</strong>
+                <strong>Refund requests</strong>
               </q-item-label>
             </q-item-section>
           </q-item>

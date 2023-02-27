@@ -102,7 +102,7 @@
                   <p
                     class="text-black"
                   >
-                    Info Tax Detail
+                    Tax Information
                   </p>
                 </div>
                 <EditableText

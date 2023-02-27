@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div>
     <div :class="`${isDesktop?'col':''} data-section`">
       <div class="q-mt-md section-divider" />
       <h6
