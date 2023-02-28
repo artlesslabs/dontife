@@ -267,11 +267,37 @@ let optionsVitaClassic = [
   { label: 'D4 ', value: 'd4' },
 ];
 
-let optionsVita3dMaster = {
-  0: { tonalidad: [ 15, 25 ] },
-  1: { tonalidad: [ 1, 2 ] },
-  2: { tonalidad: [ 1, 2, 3 ], intensidad: [ 'L', 'M', 'R' ] }
-};
+let optionsVita3dMaster = [
+{ label: '0M1', value: '0M1' },
+{ label: '0M2', value: '0M2' },
+{ label: '0M3', value: '0M3' },
+{ label: '1M1', value: '1M1' },
+{ label: '1M2', value: '1M2' },
+{ label: '2L1.5', value: '2L1.5' },
+{ label: '2L2.5', value: '2L2.5' },
+{ label: '2M1', value: '2M1' },
+{ label: '2M2', value: '2M2' },
+{ label: '2M3', value: '2M3' },
+{ label: '2R1.5', value: '2R1.5' },
+{ label: '2R2.5', value: '2R2.5' },
+{ label: '3L1.5', value: '3L1.5' },
+{ label: '3L2.5', value: '3L2.5' },
+{ label: '3M1', value: '3M1' },
+{ label: '3M2', value: '3M2' },
+{ label: '3M3', value: '3M3' },
+{ label: '3R1.5', value: '3R1.5' },
+{ label: '3R2.5', value: '3R2.5' },
+{ label: '4L1.5', value: '4L1.5' },
+{ label: '4L2.5', value: '4L2.5' },
+{ label: '4M1', value: '4M1' },
+{ label: '4M2', value: '4M2' },
+{ label: '4M3', value: '4M3' },
+{ label: '4R1.5', value: '4R1.5' },
+{ label: '4R2.5', value: '4R2.5' },
+{ label: '5M1', value: '5M1' },
+{ label: '5M2', value: '5M2' },
+{ label: '5M3', value: '5M3' },
+];
 
 let optionsChromascop = [
   { label: '01', value: '01' },

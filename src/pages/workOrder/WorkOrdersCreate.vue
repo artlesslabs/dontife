@@ -20,6 +20,7 @@
   />
   <OrderConfigurationForm
     v-if="selectedSubcategory"
+    :category="selectedCategory"
     :subcategory="selectedSubcategory"
     @orderConfigurationClick="pickOrderConfiguration"
   />
