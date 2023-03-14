@@ -1,231 +1,278 @@
 <template>
-  <div v-if="category === 'protesis'">
+  <div class="row">
     <div
-      v-if="subcategory === 'coronas' || subcategory === 'carillas' || subcategory === 'coronasSobreImplantes'"
-      class="row items-center"
+      v-if="odontograma"
+      class="col-3 q-pa-md odontograma-container"
     >
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${material === 'zirconia' ? 'material-active' : ''} `"
-        @click="material='zirconia'"
+      <div
+        class="odontograma q-pa-lg"
       >
-        <p class="text-h6">
-          Zirconia
-        </p>
         <q-img
-          class="bg-img"
-          src="@/assets/zirconia.png"
+          src="../../../assets/odontograma.svg"
         />
-      </q-card>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${material === 'zirconiaEstratificada' ? 'material-active' : ''} `"
-        @click="material='zirconiaEstratificada'"
-      >
-        <p class="text-h6">
-          Zirconia estratificada
-        </p>
-      </q-card>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${material === 'disilicatoDeLitio' ? 'material-active' : ''} `"
-        @click="material='disilicatoDeLitio'"
-      >
-        <p class="text-h6">
-          Disilicato de litio
-        </p>
-      </q-card>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${material === 'resinaHibrida' ? 'material-active' : ''} `"
-        @click="material='resinaHibrida'"
-      >
-        <p class="text-h6">
-          Resina híbrida
-        </p>
-      </q-card>
+      </div>
     </div>
-    <div
-      v-if="subcategory === 'puentes' || subcategory === 'incrustaciones'"
-      class="row items-center"
-    >
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${material === 'zirconia' ? 'material-active' : ''} `"
-        @click="material='zirconia'"
+    <div class="q-pa-md">
+      <div
+        v-if="category === 'protesis'"
+        class="col-6 form-container q-pa-md"
       >
         <p class="text-h6">
-          Zirconia
+          Seleccione el Material a utilizar
         </p>
-        <q-img
-          class="bg-img"
-          src="@/assets/zirconia.png"
-        />
-      </q-card>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${material === 'zirconiaEstratificada' ? 'material-active' : ''} `"
-        @click="material='zirconiaEstratificada'"
+        <div
+          v-if="subcategory === 'coronas' || subcategory === 'carillas' || subcategory === 'coronasSobreImplantes'"
+          class="row items-center"
+        >
+          <q-card
+            class="row my-card items-center justify-center"
+            :class="`${material === 'zirconia' ? 'material-active' : ''} `"
+            @click="material='zirconia'"
+          >
+            <p class="text-h6">
+              Zirconia
+            </p>
+            <q-img
+              class="bg-img"
+              src="@/assets/zirconia.png"
+            />
+          </q-card>
+          <q-card
+            class="row my-card items-center justify-center"
+            :class="`${material === 'zirconiaEstratificada' ? 'material-active' : ''} `"
+            @click="material='zirconiaEstratificada'"
+          >
+            <p class="text-h6">
+              Zirconia estratificada
+            </p>
+          </q-card>
+          <q-card
+            class="row my-card items-center justify-center"
+            :class="`${material === 'disilicatoDeLitio' ? 'material-active' : ''} `"
+            @click="material='disilicatoDeLitio'"
+          >
+            <p class="text-h6">
+              Disilicato de litio
+            </p>
+          </q-card>
+          <q-card
+            class="row my-card items-center justify-center"
+            :class="`${material === 'resinaHibrida' ? 'material-active' : ''} `"
+            @click="material='resinaHibrida'"
+          >
+            <p class="text-h6">
+              Resina híbrida
+            </p>
+          </q-card>
+        </div>
+        <div
+          v-if="subcategory === 'puentes' || subcategory === 'incrustaciones'"
+          class="row items-center"
+        >
+          <q-card
+            class="row my-card items-center justify-center"
+            :class="`${material === 'zirconia' ? 'material-active' : ''} `"
+            @click="material='zirconia'"
+          >
+            <p class="text-h6">
+              Zirconia
+            </p>
+            <q-img
+              class="bg-img"
+              src="@/assets/zirconia.png"
+            />
+          </q-card>
+          <q-card
+            class="row my-card items-center justify-center"
+            :class="`${material === 'zirconiaEstratificada' ? 'material-active' : ''} `"
+            @click="material='zirconiaEstratificada'"
+          >
+            <p class="text-h6">
+              Zirconia estratificada
+            </p>
+          </q-card>
+          <q-card
+            class="row my-card items-center justify-center"
+            :class="`${material === 'disilicatoDeLitio' ? 'material-active' : ''} `"
+            @click="material='disilicatoDeLitio'"
+          >
+            <p class="text-h6">
+              Disilicato de litio
+            </p>
+          </q-card>
+        </div>
+        <div v-if="material">
+          <p class="text-h6">
+            Seleccione el Colorímetro utilizado
+          </p>
+          <div class="row">
+            <q-card
+              class="my-card row items-center justify-center"
+              :class="`${colorimetro === 'vitaClassic' ? 'material-active' : ''} `"
+              @click="colorimetro='vitaClassic'"
+            >
+              <p class="text-h6">
+                Vita Classic
+              </p>
+            </q-card>
+            <q-card
+              class="my-card row items-center justify-center"
+              :class="`${colorimetro === 'vita3dMaster' ? 'material-active' : ''} `"
+              @click="colorimetro='vita3dMaster'"
+            >
+              <p class="text-h6">
+                Vita 3D Master
+              </p>
+            </q-card>
+            <q-card
+              class="my-card row items-center justify-center"
+              :class="`${colorimetro === 'chromascop' ? 'material-active' : ''} `"
+              @click="colorimetro='chromascop'"
+            >
+              <p class="text-h6">
+                Chromascop
+              </p>
+            </q-card>
+          </div>
+          <div v-if="colorimetro">
+            <p
+              v-if="colorimetro"
+              class="text-h6"
+            >
+              Seleccione el color
+            </p>
+            <DefaultSelect
+              v-if="colorimetro === 'vitaClassic' && material !== 'resinaHibrida'"
+              v-model="order.color"
+              label="Color"
+              :options="optionsVitaClassic"
+            />
+            <DefaultSelect
+              v-if="colorimetro === 'vita3dMaster' && material !== 'resinaHibrida'"
+              v-model="order.color"
+              label="Color"
+              :options="optionsVita3dMaster"
+            />
+            <DefaultSelect
+              v-if="colorimetro === 'chromascop' && material !== 'resinaHibrida'"
+              v-model="order.color"
+              label="Color"
+              :options="optionsChromascop"
+            />
+            <DefaultSelect
+              v-if="material === 'resinaHibrida'"
+              v-model="order.color"
+              label="Color"
+              :options="optionsResinaHibrida"
+            />
+          </div>
+          <div />
+        </div>
+        <div v-if="order.color">
+          <p class="text-h6">
+            Agregue Observaciones e imagenes
+          </p>
+          <div @click="menuProtesisSeleccionada = !menuProtesisSeleccionada">
+            <q-img
+              width="100px"
+              src="../../../assets/zirconia.png"
+            />
+          </div>
+          <q-menu v-model="menuProtesisSeleccionada" />
+
+          <TextInput
+            v-model="order.comments"
+            label="Observaciones"
+            type="textarea"
+          />
+          <FileInput
+            v-model="order.files.images"
+            label="Add Images"
+            multiple
+          />
+        </div>
+      </div>
+      <div
+        v-if="subcategory === 'alineadores' || subcategory === 'silensorSl' || subcategory === 'miorelajantes' || subcategory === 'protectoresDeportivos'"
+        class="form-container q-pa-md row"
       >
-        <p class="text-h6">
-          Zirconia estratificada
-        </p>
-      </q-card>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${material === 'disilicatoDeLitio' ? 'material-active' : ''} `"
-        @click="material='disilicatoDeLitio'"
-      >
-        <p class="text-h6">
-          Disilicato de litio
-        </p>
-      </q-card>
-    </div>
-    <p class="text-h6">
-      Seleccione el Colorímetro utilizado
-    </p>
-    <div class="row">
-      <q-card
-        class="my-card row items-center justify-center"
-        :class="`${colorimetro === 'vitaClassic' ? 'material-active' : ''} `"
-        @click="colorimetro='vitaClassic'"
-      >
-        <p class="text-h6">
-          Vita Classic
-        </p>
-      </q-card>
-      <q-card
-        class="my-card row items-center justify-center"
-        :class="`${colorimetro === 'vita3dMaster' ? 'material-active' : ''} `"
-        @click="colorimetro='vita3dMaster'"
-      >
-        <p class="text-h6">
-          Vita 3D Master
-        </p>
-      </q-card>
-      <q-card
-        class="my-card row items-center justify-center"
-        :class="`${colorimetro === 'chromascop' ? 'material-active' : ''} `"
-        @click="colorimetro='chromascop'"
-      >
-        <p class="text-h6">
-          Chromascop
-        </p>
-      </q-card>
-    </div>
-    <p class="text-h6">
-      Seleccione el color
-    </p>
-    <DefaultSelect
-      v-if="colorimetro === 'vitaClassic' && material !== 'resinaHibrida'"
-      v-model="order.color"
-      label="Color"
-      :options="optionsVitaClassic"
-    />
-    <DefaultSelect
-      v-if="colorimetro === 'vita3dMaster' && material !== 'resinaHibrida'"
-      v-model="order.color"
-      label="Color"
-      :options="optionsVita3dMaster"
-    />
-    <DefaultSelect
-      v-if="colorimetro === 'chromascop' && material !== 'resinaHibrida'"
-      v-model="order.color"
-      label="Color"
-      :options="optionsChromascop"
-    />
-    <DefaultSelect
-      v-if="material === 'resinaHibrida'"
-      v-model="order.color"
-      label="Color"
-      :options="optionsResinaHibrida"
-    />
-    <div />
-    <p class="text-h6">
-      Agrege Observaciones e imagenes
-    </p>
-    <TextInput
-      v-model="order.comments"
-      label="Observaciones"
-      type="textarea"
-    />
-    <FileInput
-      v-model="order.files.images"
-      label="Add Images"
-      multiple
-    />
-  </div>
-  <div v-if="subcategory === 'alineadores' || subcategory === 'silensorSl' || subcategory === 'miorelajantes' || subcategory === 'protectoresDeportivos'">
-    <p class="text-h6">
-      Seleccione el método
-    </p>
-    <DefaultSelect
-      v-model="order.method"
-      label="Método"
-      :options="[ { label: 'Escaneo', value: 'scan' }, { label: 'Modelo de yeso', value: 'yeso' } ]"
-    />
-    <FileInput
-      v-if="order.method === 'scan'"
-      v-model="order.files.scan"
-      label="Add Scan"
-      multiple
-    />
-    <FileInput
-      v-if="subcategory === 'alineadores'"
-      v-model="order.files.laboratoryStudies"
-      label="Laboratory Studies "
-      multiple
-    />
-    <TextInput
-      v-if="order.method === 'yeso'"
-      v-model="order.street"
-      label="Street"
-    />
-    <div v-if="subcategory === 'miorelajantes'">
-      <DefaultSelect
-        v-model="order.miorelajantes"
-        label="Seleccione el grosor"
-        :options="[ { label: '2mm', value: '2mm' }, { label: '3mm', value: '3mm' }, { label: '4mm', value: '4mm' } ]"
-      />
-      <p class="text-h6">
-        Seleccione el color
-      </p>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${color === 'verde' ? 'material-active' : ''} `"
-        @click="color='verde'"
-      >
-        <p class="text-h6">
-          Verde
-        </p>
-      </q-card>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${color === 'azul' ? 'material-active' : ''} `"
-        @click="color='azul'"
-      >
-        <p class="text-h6">
-          Azul
-        </p>
-      </q-card>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${color === 'transparente' ? 'material-active' : ''} `"
-        @click="color='transparente'"
-      >
-        <p class="text-h6">
-          Transparente
-        </p>
-      </q-card>
-      <q-card
-        class="row my-card items-center justify-center"
-        :class="`${color === 'rosa' ? 'material-active' : ''} `"
-        @click="color='rosa'"
-      >
-        <p class="text-h6">
-          Rosa
-        </p>
-      </q-card>
+        <div class="q-pr-md">
+          <p class="text-h6">
+            Seleccione el método
+          </p>
+          <DefaultSelect
+            v-model="order.method"
+            label="Método"
+            :options="[ { label: 'Escaneo', value: 'scan' }, { label: 'Modelo de yeso', value: 'yeso' } ]"
+          />
+          <FileInput
+            v-if="order.method === 'scan'"
+            v-model="order.files.scan"
+            label="Add Scan"
+            multiple
+          />
+          <FileInput
+            v-if="subcategory === 'alineadores'"
+            v-model="order.files.laboratoryStudies"
+            label="Laboratory Studies "
+            multiple
+          />
+          <TextInput
+            v-if="order.method === 'yeso'"
+            v-model="order.street"
+            label="Street"
+          />
+          <DefaultSelect
+            v-if="subcategory === 'miorelajantes'"
+            v-model="order.miorelajantes"
+            label="Seleccione el grosor"
+            :options="[ { label: '2mm', value: '2mm' }, { label: '3mm', value: '3mm' }, { label: '4mm', value: '4mm' } ]"
+          />
+        </div>
+        <div v-if="subcategory === 'miorelajantes'">
+          <p class="text-h6">
+            Seleccione el color
+          </p>
+          <div class="row">
+            <q-card
+              class="row my-card items-center justify-center"
+              :class="`${color === 'verde' ? 'material-active' : ''} `"
+              @click="color='verde'"
+            >
+              <p class="text-h6">
+                Verde
+              </p>
+            </q-card>
+            <q-card
+              class="row my-card items-center justify-center"
+              :class="`${color === 'azul' ? 'material-active' : ''} `"
+              @click="color='azul'"
+            >
+              <p class="text-h6">
+                Azul
+              </p>
+            </q-card>
+            <q-card
+              class="row my-card items-center justify-center"
+              :class="`${color === 'transparente' ? 'material-active' : ''} `"
+              @click="color='transparente'"
+            >
+              <p class="text-h6">
+                Transparente
+              </p>
+            </q-card>
+            <q-card
+              class="row my-card items-center justify-center"
+              :class="`${color === 'rosa' ? 'material-active' : ''} `"
+              @click="color='rosa'"
+            >
+              <p class="text-h6">
+                Rosa
+              </p>
+            </q-card>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -237,7 +284,7 @@ import FileInput from "components/general/inputs/FileInput.vue";
 import { ref } from "vue";
 import DefaultSelect from "components/general/inputs/DefaultSelect.vue";
 
-defineProps( {
+const props = defineProps( {
   subcategory: { type: String },
   category: { type: String }
 } );
@@ -247,6 +294,8 @@ let material = ref( '' );
 let colorimetro = ref( '' );
 let color= ref( '' );
 let order = ref( { files: {} } );
+const odontograma = props.category === 'protesis';
+let menuProtesisSeleccionada = ref( false );
 
 let optionsVitaClassic = [
   { label: 'A1', value: 'a1' },
@@ -353,4 +402,15 @@ let optionsResinaHibrida = [
   max-height: 100px;
 }
 
+.odontograma{
+  background-color: #FFFFFF66;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.form-container{
+  background-color: #FFFFFF66;
+  border-radius: 25px;
+  overflow: hidden;
+}
 </style>

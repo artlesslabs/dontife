@@ -1,14 +1,24 @@
 <template>
-  <DefaultButton
+  <div
     v-if="selectedCategory"
-    button-style="icon"
-    round
-    margin="q-mx-xs"
-    color="primary"
-    height="auto"
-    icon="fa-solid fa-arrow-left"
-    @click="goBack()"
-  />
+    class="new-order-bar inline"
+  >
+    <DefaultButton
+      button-style="icon"
+      round
+      margin="q-mx-xs"
+      color="primary"
+      height="auto"
+      icon="fa-solid fa-arrow-left"
+      @click="goBack()"
+    />
+    {{ `${selectedCategory ? _.capitalize( selectedCategory ):''}` }}
+    <q-icon
+      v-if="selectedSubcategory"
+      name="fas fa-arrow-right"
+    />
+    {{ `${selectedSubcategory ? _.capitalize( selectedSubcategory ):''}` }}
+  </div>
   <CategoryForm
     v-if="!selectedCategory"
     @categoryClick="pickCategory"
@@ -32,6 +42,7 @@ import { ref } from "vue";
 import SubcategoryForm from "pages/workOrder/orderFlow/SubcategoryForm.vue";
 import OrderConfigurationForm from "pages/workOrder/orderFlow/OrderConfigurationForm.vue";
 import DefaultButton from "components/general/DefaultButton.vue";
+import _ from 'lodash';
 
 let selectedCategory = ref( );
 let selectedSubcategory = ref();
@@ -60,5 +71,10 @@ function goBack(){
 </script>
 
 <style scoped>
-
+.new-order-bar{
+  padding: 5px;
+  margin: 10px;
+  border-radius: 25px;
+  background-color: rgba(213, 213, 213, 0.4);
+}
 </style>

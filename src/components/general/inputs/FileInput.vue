@@ -9,6 +9,7 @@
     </label>
     <q-file
       v-bind="$attrs"
+      rounded
       dense
       outlined
       class="file-input"
